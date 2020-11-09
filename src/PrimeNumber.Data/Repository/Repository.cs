@@ -9,32 +9,27 @@ using System.Threading.Tasks;
 
 namespace PrimeNumber.Data.Repository
 {
-    public abstract class Repository<T> : IRepository<T>, IUnitOfWork, IDisposable where T : Entity, new()
+    public abstract class Repository<T> : IRepository<T>, IDisposable where T : Entity, new()
     {
-        private readonly PrimeNumberDbContext _context;
+        protected readonly PrimeNumberDbContext _context;
         protected readonly DbSet<T> DbSet;
+
+        public IUnitOfWork UnitOfWork => _context;
 
         protected Repository(PrimeNumberDbContext context)
         {
             this._context = context;
             DbSet = this._context.Set<T>();
-        }
-       
-        public Task<int> Commit()
-        {
-            return _context.Commit();
-        }
+        }      
 
         public async Task Create(T obj)
         {
             await DbSet.AddAsync(obj);
-            await this.Commit();
         }
 
-        public async Task Delete(Guid id)
+        public void Delete(Guid id)
         {
             DbSet.Remove(new T { Id = id });
-            await this.Commit();
         }
 
         public async Task<IEnumerable<T>> GetAll()
@@ -50,7 +45,6 @@ namespace PrimeNumber.Data.Repository
         public async Task Update(T obj)
         {
             DbSet.Update(obj);
-            await this.Commit();
         }
 
         public void Dispose()

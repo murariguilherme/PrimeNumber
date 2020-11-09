@@ -8,8 +8,9 @@ namespace PrimeNumber.Business.Interfaces
 {
     public interface IRepository<T> where T: Entity
     {
+        IUnitOfWork UnitOfWork { get; }
         Task Create(T obj);
-        Task Delete(Guid id);
+        void Delete(Guid id);
         Task Update(T obj);
         Task<T> Read(Guid id);
         Task<IEnumerable<T>> GetAll();

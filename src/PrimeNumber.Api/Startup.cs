@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PrimeNumber.Business.Interfaces;
+using PrimeNumber.Business.Services;
 using PrimeNumber.Data.Data;
 using PrimeNumber.Data.Repository;
 
@@ -38,6 +39,7 @@ namespace PrimeNumber.Api
 
             services.AddScoped<PrimeNumberDbContext>();
             services.AddScoped<IPrimeNumRepository, PrimeNumRepository>();
+            services.AddScoped<IPrimeNumberService, PrimeNumberService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
