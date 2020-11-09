@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PrimeNumber.Business.Interfaces
 {
-    public interface IRepositoryPrimeNum: IRepository<PrimeNum>
+    public interface IPrimeNumRepository : IRepository<PrimeNum>
     {
     }
 }
