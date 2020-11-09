@@ -4,8 +4,8 @@ using System.Text;
 
 namespace PrimeNumber.Business.Models
 {
-    public class PrimeNumber
-    {
+    public class PrimeNum: Entity
+    {        
         public int Index { get; set; }
         public int PrimeValue { get; set; }
     }
