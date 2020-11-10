@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PrimeNumber.Business.Interfaces;
+using PrimeNumber.Business.Models;
+using PrimeNumber.Business.ViewModel;
 
 namespace PrimeNumber.Api.Controllers
 {
@@ -11,10 +14,19 @@ namespace PrimeNumber.Api.Controllers
     [ApiController]
     public class PrimeNumberController : ControllerBase
     {
-        [HttpPost]
-        public int GetPrimeNumber(int index)
+        private readonly IPrimeNumberService _service;
+
+        public PrimeNumberController(IPrimeNumberService service)
         {
-            return 0;
+            _service = service;
+        }
+
+        [HttpPost]
+        public async Task<PrimeNumViewModel> GetNextPrimeByIndex([FromBody] int index)
+        {                              
+            var primeValue = await _service.Add(index);
+
+            return primeValue;
         }
     }
 }

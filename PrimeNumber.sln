@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumber.Api", "src\PrimeNumber.Api\PrimeNumber.Api.csproj", "{CF26CF34-C29C-43CD-8611-C5E626C5BB80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumber.Api", "src\PrimeNumber.Api\PrimeNumber.Api.csproj", "{CF26CF34-C29C-43CD-8611-C5E626C5BB80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumber.Tests", "tests\PrimeNumber.Tests\PrimeNumber.Tests.csproj", "{C0246BB8-34F3-4C08-B906-F3EB267A5ACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumber.Tests", "tests\PrimeNumber.Tests\PrimeNumber.Tests.csproj", "{C0246BB8-34F3-4C08-B906-F3EB267A5ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumber.Data", "src\PrimeNumber.Data\PrimeNumber.Data.csproj", "{98E7C8BC-2FBA-436F-B069-701C64EA3C8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumber.Data", "src\PrimeNumber.Data\PrimeNumber.Data.csproj", "{98E7C8BC-2FBA-436F-B069-701C64EA3C8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumber.Business", "src\PrimeNumber.Business\PrimeNumber.Business.csproj", "{BA8A95C4-48AC-44F7-9354-FE471FA1C752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumber.Business", "src\PrimeNumber.Business\PrimeNumber.Business.csproj", "{BA8A95C4-48AC-44F7-9354-FE471FA1C752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumber.WebApp", "src\PrimeNumber.WebApp\PrimeNumber.WebApp.csproj", "{080ACAF0-ADAB-4AA7-A5A9-A44A4F2F3F64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BA8A95C4-48AC-44F7-9354-FE471FA1C752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA8A95C4-48AC-44F7-9354-FE471FA1C752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8A95C4-48AC-44F7-9354-FE471FA1C752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080ACAF0-ADAB-4AA7-A5A9-A44A4F2F3F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080ACAF0-ADAB-4AA7-A5A9-A44A4F2F3F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080ACAF0-ADAB-4AA7-A5A9-A44A4F2F3F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080ACAF0-ADAB-4AA7-A5A9-A44A4F2F3F64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

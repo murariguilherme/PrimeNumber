@@ -1,4 +1,5 @@
 ﻿using PrimeNumber.Business.Models;
+using PrimeNumber.Business.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,10 @@ namespace PrimeNumber.Business.Interfaces
 {
     public interface IPrimeNumberService
     {
-        int GetPrimeNumber(int index);
-        Task<PrimeNum> Add(PrimeNum primeNum);
+        bool VerifyIsPrime(int number);
+        int FindPrimeByIndex(int index);
+        Task<PrimeNumViewModel> Add(int index);
+        bool VerifyIfExistisOnDatabase(int index);
+        Task<PrimeNum> GetByIndex(int index);
     }
 }
