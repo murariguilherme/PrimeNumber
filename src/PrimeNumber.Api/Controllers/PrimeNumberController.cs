@@ -22,11 +22,17 @@ namespace PrimeNumber.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<PrimeNumViewModel> GetNextPrimeByIndex([FromBody] int index)
-        {                              
-            var primeValue = await _service.Add(index);
-
-            return primeValue;
+        public async Task<IActionResult> GetNextPrimeByIndex([FromQuery] int index)
+        {
+            try
+            {
+                var primeValue = await _service.Add(index);
+                return Ok(primeValue);
+            }            
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

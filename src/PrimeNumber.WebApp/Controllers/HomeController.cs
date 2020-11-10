@@ -2,36 +2,53 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Mime;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using PrimeNumber.Business.Models;
 using PrimeNumber.WebApp.Models;
 
 namespace PrimeNumber.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public string Uri;
+        public readonly IConfiguration _configuration;
+        public HomeController(IConfiguration configuration)
         {
-            _logger = logger;
+            _configuration = configuration;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await GetPrimeNumberByIndex(5);
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> GetPrimeNumberByIndex(int index)
         {
-            return View();
-        }
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_configuration.GetConnectionString("PrimerNumber"));
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                var content = new StringContent(index.ToString(), Encoding.UTF8);
+                var responseTask = await client.PostAsync($"api/PrimeNumber?index={index}", content);                
+
+
+                if (responseTask.IsSuccessStatusCode)
+                {
+                    var resultString = await responseTask.Content.ReadAsStringAsync();                    
+                    var primeNumObj = JsonConvert.DeserializeObject<PrimeNum>(resultString);
+                    return Ok(primeNumObj);
+                }
+            }
+            
+            return BadRequest();
         }
     }
 }
