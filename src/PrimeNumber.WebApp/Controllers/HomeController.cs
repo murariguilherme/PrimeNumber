@@ -24,13 +24,13 @@ namespace PrimeNumber.WebApp.Controllers
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            await GetPrimeNumberByIndex(5);
             return View();
         }
 
-        public async Task<IActionResult> GetPrimeNumberByIndex(int index)
+        [HttpPost]
+        public async Task<ActionResult<PrimeNumberViewModel>> GetPrimeNumberByIndex(int index)
         {
             using (var client = new HttpClient())
             {
@@ -43,12 +43,12 @@ namespace PrimeNumber.WebApp.Controllers
                 if (responseTask.IsSuccessStatusCode)
                 {
                     var resultString = await responseTask.Content.ReadAsStringAsync();                    
-                    var primeNumObj = JsonConvert.DeserializeObject<PrimeNum>(resultString);
-                    return Ok(primeNumObj);
+                    var primeNumObj = JsonConvert.DeserializeObject<PrimeNumberViewModel>(resultString);
+                    return View("Index", primeNumObj);
                 }
             }
-            
-            return BadRequest();
+
+            return null;
         }
     }
 }

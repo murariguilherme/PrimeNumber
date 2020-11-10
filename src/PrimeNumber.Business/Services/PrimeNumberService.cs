@@ -16,6 +16,8 @@ namespace PrimeNumber.Business.Services
 
         public int FindPrimeByIndex(int index)
         {
+            if (index == 0) return 0;
+
             var primeNumberCount = 1;
             var number = 1;
 

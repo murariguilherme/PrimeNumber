@@ -1,8 +1,22 @@
-﻿@{
+﻿@model PrimeNumber.WebApp.Models.PrimeNumberViewModel;    
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="d-flex justify-content-center " style="height:100px;">
+        <div class="row">
+            <form method="post" asp-controller="Home" asp-action="GetPrimeNumberByIndex" asp->
+                <div class="container">
+                    <input name="index" class="form-control form-control-lg" type="text" placeholder="Index here..">
+                    <input type="submit" class="mt-2 btn btn-primary" value="Get Prime by Index" />
+                    
+                    @if (@Model != null)
+                    {
+                        <div class="container mt-5">
+                            <label asp-for="PrimeValue">The @Model.Index index-th is @Model?.PrimeValue</label>
+                        </div>
+                    }
+                </div>                
+            </form>
+        </div>
+    </div>
